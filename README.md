@@ -1,153 +1,167 @@
-📊 Aplicativo Interno Empresarial — Plataforma de Indicadores Gerenciais
+<center>
+  <h1 style="font-size:2.4em; margin-bottom:0.1em;">🏢 Aplicativo Interno Empresarial</h1>
+  <p style="margin-top:0.2em; font-size:1.05em; color:#555;">
+    Plataforma corporativa interativa para visualização de indicadores, autenticação e análise gerencial em tempo real.
+  </p>
+  <p>
+    <a href="https://github.com/Rafael072187/Aplicativo-Interno-Empresarial" style="background:#24292F;color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:600;">
+      🔗 Repositório no GitHub
+    </a>
+  </p>
+</center>
 
-Este projeto consiste em uma plataforma corporativa desenvolvida em Streamlit, com suporte a autenticação de usuários e dashboards interativos voltados ao monitoramento de projetos e análise de indicadores financeiros.
+<hr>
 
-A aplicação oferece controle de acesso por tipo de usuário, múltiplas páginas integradas e visualizações gráficas avançadas com suporte a filtros dinâmicos e métricas estratégicas.
+## 🧭 Tabela de Conteúdos
 
-----------------------------------------------------------------------------------------------------------------
+- [Descrição](#-descrição)
+- [Instalação](#-instalação)
+- [Uso](#-uso)
+- [Tecnologias](#-tecnologias)
+- [Como contribuir](#-como-contribuir)
+- [Autor](#-autor)
+- [Observações](#-observações)
 
-🧩 Principais Funcionalidades
+---
 
-🔐 Autenticação segura de usuários via streamlit-authenticator e banco de dados SQLite
+## 📘 Descrição
 
-👤 Gestão de contas: criação de usuários com ou sem permissão de administrador
+<details>
+<summary><b>Resumo</b></summary>
 
-📈 Dashboards interativos com filtros por setor, status e ano de execução
+O **Aplicativo Interno Empresarial** é uma aplicação desenvolvida em **Streamlit** voltada para empresas que buscam **centralizar a análise de dados e indicadores corporativos** em um painel visual e seguro.  
 
-📊 Indicadores financeiros e operacionais com gráficos dinâmicos
+O sistema oferece:
 
-📁 Persistência de dados em banco relacional com SQLAlchemy (ORM)
+- **Login e autenticação de usuários** com controle de acesso;
+- **Dashboard interativo** com gráficos financeiros e operacionais;
+- **Gestão de contas internas**;
+- **Visualização de métricas de desempenho** e relatórios dinâmicos.
 
-🎨 Interface adaptada ao tema escuro, com layout moderno e responsivo
+O projeto tem como objetivo facilitar o acompanhamento de resultados e o apoio à tomada de decisão em ambientes empresariais.
 
-🧮 Integração com planilhas (Base.xlsx) para ingestão de dados
+</details>
 
-----------------------------------------------------------------------------------------------------------------
+---
 
-📁 Estrutura de Diretórios
+## ⚙️ Instalação
 
-📦 aplicativo-empresarial
+<details>
+<summary><b>Passo a passo (Linux / macOS / Windows)</b></summary>
 
-├── 📜 main.py                # Ponto de entrada da aplicação
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Rafael072187/Aplicativo-Interno-Empresarial.git
+   cd Aplicativo-Interno-Empresarial
+Crie e ative um ambiente virtual (recomendado):
 
-├── 📜 homepage.py            # Tela inicial de boas-vindas e navegação
+macOS / Linux
 
-├── 📜 dashboard.py           # Dashboard financeiro e de projetos
+bash
+Copiar código
+python3 -m venv .venv
+source .venv/bin/activate
+Windows (PowerShell)
 
-├── 📜 indicadores.py        # Indicadores de desempenho e funil de status
+powershell
+Copiar código
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+Instale as dependências:
 
-├── 📜 criar_conta.py        # Página de criação de novas contas (admin)
-
-├── 📜 criar_admin.py        # Script auxiliar para criar administradores
-
-├── 📜 models.py             # Definição do modelo de dados (ORM)
-
-├── 📜 data_loader.py        # Carregamento de dados a partir de planilhas
-
-├── 📜 requirements.txt      # Dependências da aplicação
-
-├── 📜 config.toml          # Configuração de tema e aparência
-
-├── 📁 imagens/             # Imagens utilizadas nos cards e interface
-
-└── 📄 Base.xlsx             # Base de dados principal (entrada)
-
-----------------------------------------------------------------------------------------------------------------
-
-🧪 Tecnologias Utilizadas
-
-Tecnologia	Finalidade
-
-Streamlit	Construção da interface web interativa
-
-Plotly	Geração de gráficos dinâmicos e responsivos
-
-SQLAlchemy	ORM para persistência em banco de dados
-
-SQLite	Armazenamento local de usuários
-
-Pandas	Manipulação de dados tabulares
-
-streamlit-authenticator	Autenticação e controle de acesso
-
-----------------------------------------------------------------------------------------------------------------
-
-💻 Instruções de Execução
-
-1. Instale as dependências
-   
+bash
+Copiar código
 pip install -r requirements.txt
+Certifique-se de que o arquivo Base.xlsx está presente na raiz do projeto.
+Ele contém os dados-base utilizados pelos dashboards.
 
-2. Prepare a base de dados
+Execute o aplicativo:
 
-Certifique-se de que o arquivo Base.xlsx está na raiz do projeto.
-
-A planilha deve conter, no mínimo, as seguintes colunas:
-
-Setor | Status | Data Chegada | Valor Orçado | Valor Negociado | Desconto Concedido | Código Projeto
-
-3. Execute o sistema
-
+bash
+Copiar código
 streamlit run main.py
+</details>
+🖥️ Uso
+<details> <summary><b>Executar e navegar no sistema</b></summary>
+Com o projeto em execução:
 
-----------------------------------------------------------------------------------------------------------------
+Acesse no navegador o endereço exibido pelo Streamlit (geralmente http://localhost:8501).
 
-📊 Dashboards Disponíveis
+Faça login com suas credenciais ou registre um novo usuário.
 
-Dashboard de Projetos (dashboard.py)
+Utilize o menu lateral para:
 
-Filtros: Setor, Status e Ano
+Visualizar indicadores financeiros;
 
-Gráficos:
+Consultar gráficos de desempenho;
 
-Área acumulada de Valor Negociado
+Acompanhar projetos e métricas corporativas;
 
-Barras comparativas: Valor Orçado vs Valor Pago
+Acessar painéis administrativos (se autorizado).
 
-Indicadores:
+</details> <p align="center" style="margin-top:14px;"> <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="90" alt="ícone dashboard"> <br> <i>Exemplo de interface de dashboard (baseada em Streamlit e Plotly).</i> </p>
+🛠️ Tecnologias
+<details> <summary><b>Stack principal</b></summary>
+Python 3.8+
 
-Total pago e total em descontos no ano selecionado
+Streamlit — Interface web e dashboards interativos
 
-Indicadores Gerais (indicadores.py)
+Pandas — Manipulação e análise de dados
 
-Cards com KPIs:
+Plotly — Criação de gráficos dinâmicos
 
-Total de oportunidades
+SQLAlchemy — Persistência e ORM
 
-Projetos em andamento
+Streamlit-Authenticator — Sistema de login
 
-Projetos finalizados
+Excel (.xlsx) — Fonte de dados
 
-Valores orçados, pagos e descontos
+Arquivos principais:
 
-Gráfico funil por status do projeto
+main.py — ponto de entrada da aplicação
 
-----------------------------------------------------------------------------------------------------------------
+indicadores.py — lógica dos gráficos e KPIs
 
-🧠 Controle de Navegação
+models.py — modelos e estrutura de dados
 
-A navegação entre páginas é controlada via permissões:
+Base.xlsx — dados corporativos utilizados nos painéis
 
-Administradores têm acesso completo:
+</details>
+🤝 Como contribuir
+<details> <summary><b>Guia rápido</b></summary>
+Faça um fork do repositório.
 
-Home, Dashboards, Indicadores, Criar Conta, Logout
+Crie uma branch para sua contribuição:
 
-Usuários comuns:
+bash
+Copiar código
+git checkout -b feature/minha-melhoria
+Realize as alterações e commit:
 
-Home, Dashboards, Indicadores, Logout
+bash
+Copiar código
+git commit -m "feat: adiciona novo indicador de performance"
+Envie para seu fork:
 
-Controle realizado no main.py com base no atributo admin do usuário autenticado.
+bash
+Copiar código
+git push origin feature/minha-melhoria
+Abra um Pull Request neste repositório 🚀
 
-----------------------------------------------------------------------------------------------------------------
+Dicas:
 
-🎯 Público-Alvo
+Mantenha o padrão de código e formatação do projeto.
 
-Empresas e equipes que precisam de uma ferramenta interna para:
+Se adicionar novos indicadores, atualize os dados em Base.xlsx.
 
-Analisar a performance de projetos ao longo do tempo
+Teste visualmente o layout antes do PR.
 
-Gerenciar visualmente indicadores-chave de negócio (KPIs)
+</details>
+👤 Autor
+<details> <summary><b>Contatos</b></summary> <p> <b>Rafael Bittencourt de Araújo</b> — desenvolvedor do projeto.<br> GitHub: <a href="https://github.com/Rafael072187" target="_blank">github.com/Rafael072187</a><br> Caso queira entrar em contato, abra uma issue no repositório. </p> </details>
+📝 Observações
+✅ Projeto ideal para uso corporativo interno e monitoramento de indicadores empresariais.
+📊 Permite rápida integração com novas fontes de dados (Excel, SQL, APIs).
+🔒 Inclui autenticação segura via streamlit-authenticator.
 
-Controlar o acesso por nível de usuário
-
-Trabalhar com dados tabulares sem necessidade de sistemas complexos
+<p align="center" style="margin-top:18px;"> <a href="https://github.com/Rafael072187/Aplicativo-Interno-Empresarial" style="background:#0b5fff;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;"> Ver repositório </a> </p> <p align="center" style="margin-top:14px;color:#666;"> Estrutura baseada no repositório <b>Aplicativo-Interno-Empresarial</b> de Rafael Bittencourt de Araújo. </p> ```

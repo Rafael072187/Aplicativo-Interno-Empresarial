@@ -3,6 +3,10 @@ from data_loader import carregar_dados
 import plotly.express as px
 import plotly.graph_objects as go
 
+if "logado" not in st.session_state or not st.session_state["logado"]:
+    st.warning("⚠️ Você precisa fazer login primeiro.")
+    st.stop()
+
 base = carregar_dados()
 
 coluna_esquerda, coluna_meio, coluna_direita = st.columns([1, 1, 1])

@@ -1,7 +1,18 @@
 from models import session, Usuario
-import streamlit_authenticator as stauth
+from passlib.hash import bcrypt_sha256
 
-senha_criptografada = stauth.Hasher(["123456"]).generate()[0]
-usuario = Usuario(nome="Rafa2", senha=senha_criptografada, email="teste3@gmail.com", admin=False)
-session.add(usuario)
-session.commit()
+try:
+    senha_criptografada = bcrypt_sha256.hash("123456")
+
+    usuario = Usuario(
+        nome="Admin",
+        senha=senha_criptografada,
+        email="admin@empresa.com",
+        admin=True
+    )
+
+    session.add(usuario)
+    session.commit()
+    print("✅ Admin criado com sucesso!")
+except Exception as e:
+    print("❌ Erro ao criar admin:", e)

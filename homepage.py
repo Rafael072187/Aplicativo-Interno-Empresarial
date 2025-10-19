@@ -1,9 +1,6 @@
 import streamlit as st
 
-secao_usuario = st.session_state
-nome_usuario = None
-if "username" in secao_usuario:
-    nome_usuario = secao_usuario.name
+nome_usuario = st.session_state.get("usuario_logado", None)
 
 coluna_esquerda, coluna_direta = st.columns([1, 1.6])
 

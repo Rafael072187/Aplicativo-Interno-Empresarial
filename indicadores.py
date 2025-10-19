@@ -2,7 +2,10 @@ import streamlit as st
 from data_loader import carregar_dados
 import plotly.express as px
 
-
+if "logado" not in st.session_state or not st.session_state["logado"]:
+    st.warning("⚠️ Você precisa fazer login primeiro.")
+    st.stop()
+    
 base = carregar_dados()
 
 def criar_card(icone, numero, texto, coluna_card):

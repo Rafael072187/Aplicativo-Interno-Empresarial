@@ -4,19 +4,24 @@ from models import session, Usuario
 from data_loader import carregar_dados
 
 st.set_page_config(page_title="Aplicativo Interno Empresarial", layout="wide")
-st.title("🔐 Login no Aplicativo Interno Empresarial")
-st.markdown("---")
 
-# === Verifica se já está logado ===
+# === Inicializa estado da sessão ===
 if "logado" not in st.session_state:
     st.session_state["logado"] = False
 if "username" not in st.session_state:
     st.session_state["username"] = None
+if "nome" not in st.session_state:
+    st.session_state["nome"] = None
+if "admin" not in st.session_state:
+    st.session_state["admin"] = False
+if "bemvindo_exibido" not in st.session_state:
+    st.session_state["bemvindo_exibido"] = False  # <-- controle de exibição única
 
-# === Se já logado, pula o formulário ===
-if st.session_state["logado"]:
-    st.success(f"Bem-vindo novamente, {st.session_state['nome']}!")
-else:
+# === Tela de login (só aparece se não estiver logado) ===
+if not st.session_state["logado"]:
+    st.title("🔐 Login no Aplicativo Interno Empresarial")
+    st.markdown("---")
+
     with st.form("login_form"):
         email_input = st.text_input("Email")
         senha_input = st.text_input("Senha", type="password")
@@ -36,19 +41,30 @@ else:
                         st.session_state["username"] = usuario.email
                         st.session_state["nome"] = usuario.nome
                         st.session_state["admin"] = usuario.admin
+                        st.session_state["bemvindo_exibido"] = False  # reset ao logar
                         st.success("✅ Login realizado com sucesso!")
                         st.rerun()
-
                     else:
                         st.error("Senha incorreta.")
                 except Exception as e:
                     st.error(f"Erro ao verificar senha: {e}")
 
-# === Após login, inicia o app ===
+# === Após login ===
 if st.session_state["logado"]:
     base = carregar_dados()
+    nome = st.session_state["nome"]
+    admin = st.session_state["admin"]
 
-    if st.session_state.get("admin", False):
+    # Exibe “Bem-vindo” só uma vez após login
+    if not st.session_state["bemvindo_exibido"]:
+        if admin:
+            st.success(f"Bem-vindo novamente, {nome}! (Admin)")
+        else:
+            st.success(f"Bem-vindo novamente, {nome}!")
+        st.session_state["bemvindo_exibido"] = True  # <-- garante que só aparece uma vez
+
+    # === Definição de páginas ===
+    if admin:
         pg = st.navigation(
             {
                 "Home": [st.Page("homepage.py", title="Aplicativo Interno Empresarial")],
@@ -57,7 +73,7 @@ if st.session_state["logado"]:
                     st.Page("indicadores.py", title="Indicadores"),
                 ],
                 "Conta": [
-                    st.Page("criar_conta.py", title="Criar Conta"),
+                    st.Page("criar_conta.py", title="Criar Conta"),  # só admin
                     st.Page("logout.py", title="Sair"),
                 ],
             }
@@ -70,7 +86,8 @@ if st.session_state["logado"]:
                     st.Page("dashboard.py", title="Dashboard"),
                     st.Page("indicadores.py", title="Indicadores"),
                 ],
-                "Conta": [st.Page("logout.py", title="Sair")],
+                "Conta": [st.Page("logout.py", title="Sair")],  # usuário comum sem criar conta
             }
         )
+
     pg.run()
